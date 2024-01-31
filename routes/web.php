@@ -1,9 +1,11 @@
 <?php
 
-
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\testController;
+use App\Models\Book;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,23 +22,23 @@ Route::get('/', function () {
      return view('welcome');
 });
 
-Route::get('/test',function(){
-    $i=0;
-    $fruits=['banana','apple','orange'];
-    return view('test',['age'=> 19,'i'=>$i,'fruits'=>$fruits]);
-});
-
-Route::get('/logic',testController::class . '@welcome');
 
 
-Route::get('/crud',function(){
-    return view('crud');
-});
 
-Route::get('/books',function(){
-    return view('book.index');
-});
 
+
+// Books
+
+Route::get('/books',[BookController::class,'index']);
+Route::get('books/create',[BookController::class,'create']);
+Route::post('books/create',[BookController::class,'store']);
+Route::get('books/{book}/edit',[BookController::class,'edit']);
+Route::put('books/{book}/update',[BookController::class,'update']);
+Route::get('books/{book}/delete',[BookController::class,'destroy']);
+Route::get('books/{book}/delete',[BookController::class,'softDelete']);
+
+
+// Auth
 
 Auth::routes();
 
