@@ -33,3 +33,15 @@ Route::get('/crud',function(){
     return view('crud');
 });
 
+Route::get('/books',function(){
+    return view('book.index');
+});
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
