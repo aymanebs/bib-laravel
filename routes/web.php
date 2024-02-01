@@ -32,16 +32,17 @@ Route::get('/', function () {
 // Books
 
 Route::get('/books',[BookController::class,'index'])->name('book.index');
-Route::get('books/create',[BookController::class,'create']);
-Route::post('books/create',[BookController::class,'store']);
-Route::get('books/{book}/edit',[BookController::class,'edit']);
-Route::put('books/{book}/update',[BookController::class,'update']);
-Route::get('books/{book}/delete',[BookController::class,'destroy']);
+Route::get('books/create',[BookController::class,'create'])->middleware('admin');
+Route::post('books/create',[BookController::class,'store'])->middleware('admin');
+Route::get('books/{book}/edit',[BookController::class,'edit'])->middleware('admin');
+Route::put('books/{book}/update',[BookController::class,'update'])->middleware('admin');
+Route::get('books/{book}/delete',[BookController::class,'destroy'])->middleware('admin');
 
 
 // reservation
 
-Route::get('/reservations',[ReservationController::class,'index'])->name('reservation.index');
+Route::get('/reservations',[ReservationController::class,'index'])->name('reservation.index')->middleware('admin');
+Route::get('/reservations/user',[ReservationController::class,'indexForUser'])->name('reservation.index')->middleware('user');
 Route::get('reservations/{book}/create',[ReservationController::class,'create']);
 Route::post('reservations/create',[ReservationController::class,'store']);
 Route::get('reservations/{reservation}/delete',[ReservationController::class,'destroy']);

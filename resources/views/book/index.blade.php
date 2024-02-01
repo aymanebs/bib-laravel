@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Books</title>
-</head>
-<body>
+@extends('layouts.app')
+@section("content")
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
@@ -19,11 +12,19 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Books</h4>
+                        @if(auth()->user()->role_id == 1)
                         <a href="{{url('books/create')}}" class="btn btn-primary float-end">Add book</a>
+                        @endif
                     </div>
                     <div class="card-links">
-                        <a href="{{url('/books')}}">Books</a>
-                        <a href="{{url('/reservations')}}">Reservations</a>
+                        <a href="{{url('/books')}}" style="text-decoration:none">Books</a>
+                        @if(auth()->user()->role_id == 1)
+                        <a href="{{url('/reservations')}}" style="text-decoration:none">Reservations</a>
+                        @endif
+                        @if(auth()->user()->role_id == 2)
+                        <a href="{{url('/reservations/user')}}" style="text-decoration:none">Reservations</a>
+                        @endif
+                       
                     </div>
                     <div class="card-body">
                         <table class="table">
@@ -56,9 +57,16 @@
                                     <td>{{$book->created_at}}</td>
                                     <td>{{$book->updated_at}}</td>
                                     <td>
+                                        @if(Auth()->user()->role_id == 1)
                                         <a href="{{url('books/' . $book->id . '/edit')}}" class="btn btn-warning">Edit</a>
                                         <a href="{{url('books/' . $book->id . '/delete')}}" class="btn btn-danger">Delete</a>
+                                        @endif
+                                        @if(Auth()->user()->role_id == 1)
                                         <a href="{{url('reservations/' . $book->id . '/create')}}" class="btn btn-info">Reservation</a>
+                                        @endif
+                                        @if(Auth()->user()->role_id == 2)
+                                        <a href="{{url('reservations/' . $book->id . '/create')}}" class="btn btn-info">Reservation</a>
+                                        @endif
                                     </td>
 
                                 </tr>
@@ -70,6 +78,5 @@
             </div>
         </div>
     </div>
-    
-</body>
-</html>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-7FTIQoSc7K9qgz4+U8QT1TLgFZMK3I+Yvb4T6zgTv+7K49t3AcXtPDLkD5FwyoTs" crossorigin="anonymous"></script>   
+    @endsection
