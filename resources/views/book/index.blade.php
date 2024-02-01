@@ -21,6 +21,10 @@
                         <h4>Books</h4>
                         <a href="{{url('books/create')}}" class="btn btn-primary float-end">Add book</a>
                     </div>
+                    <div class="card-links">
+                        <a href="{{url('/books')}}">Books</a>
+                        <a href="{{url('/reservations')}}">Reservations</a>
+                    </div>
                     <div class="card-body">
                         <table class="table">
                             <thead>
@@ -33,7 +37,6 @@
                                     <th>edition</th>
                                     <th>total_copies</th>
                                     <th>avaible_copies</th>
-                                    <th>deleted_at</th>
                                     <th>created_at</th>
                                     <th>updated_at</th>
                                     <th>Action</th>
@@ -50,7 +53,6 @@
                                     <td>{{$book->edition}}</td>
                                     <td>{{$book->total_copies}}</td>
                                     <td>{{$book->avaible_copies}}</td>
-                                    <td>{{$book->deleted_at}}</td>
                                     <td>{{$book->created_at}}</td>
                                     <td>{{$book->updated_at}}</td>
                                     <td>

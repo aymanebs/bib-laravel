@@ -21,9 +21,6 @@
                     </div>
                     <div class="card-body">
                         <!-- form start -->
-
-                        
-
                       <form action="{{url('books/create')}}" method='post'>
                         @csrf
                         <div class="mb-3">

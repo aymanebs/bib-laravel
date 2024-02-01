@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\testController;
 use App\Models\Book;
+use App\Models\Reservation;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,7 +37,13 @@ Route::post('books/create',[BookController::class,'store']);
 Route::get('books/{book}/edit',[BookController::class,'edit']);
 Route::put('books/{book}/update',[BookController::class,'update']);
 Route::get('books/{book}/delete',[BookController::class,'destroy']);
-Route::get('books/{book}/delete',[BookController::class,'softDelete']);
+
+
+// reservation
+
+Route::get('/reservations',[ReservationController::class,'index']);
+Route::get('reservations/create',[ReservationController::class,'create']);
+Route::post('reservations/create',[ReservationController::class,'store']);
 
 
 // Auth

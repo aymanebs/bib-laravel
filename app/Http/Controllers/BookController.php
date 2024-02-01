@@ -17,13 +17,13 @@ class BookController extends Controller
     public function store(Request $request){
 
         $request->validate([
-            'title'=>'required|max:255|alpha',
-            'author'=>'required|max:255|alpha',
-            'genre'=>'required|max:255|alpha',
-            'description'=>'required|max:255|alpha',
+            'title'=>'required|max:255',
+            'author'=>'required|max:255',
+            'genre'=>'required|max:255',
+            'description'=>'required|max:255',
             'edition'=>'required|date',
-            'total_copies'=>'required|numeric|',
-            'avaible_copies'=>'required|numeric|',
+            'total_copies'=>'required|numeric',
+            'avaible_copies'=>'required|numeric',
         ]);
 
         Book::create($request->all());
@@ -52,16 +52,13 @@ class BookController extends Controller
 
     }
 
-    // public function destroy(Book $book){
-    //     $book->delete();
-    //     return redirect('books')->with('deleted','Book deleted');
-
-    // }
-
-    public function softDelete(Book $book){
+    public function destroy(Book $book){
         $book->delete();
         return redirect('books')->with('deleted','Book deleted');
+
     }
+
+ 
 
 
 }
