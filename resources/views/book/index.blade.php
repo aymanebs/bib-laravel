@@ -58,6 +58,7 @@
                                     <td>
                                         <a href="{{url('books/' . $book->id . '/edit')}}" class="btn btn-warning">Edit</a>
                                         <a href="{{url('books/' . $book->id . '/delete')}}" class="btn btn-danger">Delete</a>
+                                        <a href="{{url('reservations/' . $book->id . '/create')}}" class="btn btn-info">Reservation</a>
                                     </td>
 
                                 </tr>

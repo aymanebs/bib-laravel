@@ -11,18 +11,24 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
+                    @if(session('deleted'))
+                    <div class="alert alert-danger">{{session('deleted')}}</div>
+                     @endif
                     <div class="card-header">
                     <h4>Reservations</h4>
-                        <a href="{{url('reservations/create')}}" class="btn btn-primary float-end">Add reservation</a>
+                   
+                    <p>id:{{ auth()->id()}}</p>
+                  
                     </div>
                     <div class="card-links">
-                        <a href="{{url('/books')}}"style="text-decoration:none">Books</a>
+                        <a href="{{url('/books')}}"style="text-decoration:none" >Books</a>
                         <a href="{{url('/reservations')}}"style="text-decoration:none">Reservations</a>
                     </div>
                     <div class="card-body">
                         <table class="table">
                             <thead>
                                 <tr>
+                                   <th>id</th>
                                    <th>description</th>
                                    <th>reservation_date</th> 
                                    <th>return_date</th>
@@ -31,19 +37,23 @@
                                    <th>Action</th>
                                 </tr>
                             </thead>
+                           
                             <tbody>
+                            @foreach($reservations as $reservation) 
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{$reservation->id}}</td>
+                                    <td>{{$reservation->description}}</td>
+                                    <td>{{$reservation->reservation_date}}</td>
+                                    <td>{{$reservation->return_date}}</td>
+                                    <td>{{$reservation->user_id}}</td>
+                                    <td>{{$reservation->book_id}}</td>
                                     <td>
-                                      <a href="{{url('reservations//edit')}}" class="btn btn-warning">Edit</a> 
-                                      <a href="{{url('reservations//delete')}}" class="btn btn-danger">Delete</a> 
+                                      <a href="{{url('reservations/' . $reservation->id . '/delete')}}" class="btn btn-danger">Delete</a> 
                                     </td>
                                 </tr>
+                            @endforeach
                             </tbody>
+                           
                         </table>
                     </div>
                 </div>

@@ -31,7 +31,7 @@ Route::get('/', function () {
 
 // Books
 
-Route::get('/books',[BookController::class,'index']);
+Route::get('/books',[BookController::class,'index'])->name('book.index');
 Route::get('books/create',[BookController::class,'create']);
 Route::post('books/create',[BookController::class,'store']);
 Route::get('books/{book}/edit',[BookController::class,'edit']);
@@ -41,9 +41,10 @@ Route::get('books/{book}/delete',[BookController::class,'destroy']);
 
 // reservation
 
-Route::get('/reservations',[ReservationController::class,'index']);
-Route::get('reservations/create',[ReservationController::class,'create']);
+Route::get('/reservations',[ReservationController::class,'index'])->name('reservation.index');
+Route::get('reservations/{book}/create',[ReservationController::class,'create']);
 Route::post('reservations/create',[ReservationController::class,'store']);
+Route::get('reservations/{reservation}/delete',[ReservationController::class,'destroy']);
 
 
 // Auth
