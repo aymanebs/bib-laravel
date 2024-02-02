@@ -16,4 +16,13 @@ class Reservation extends Model
         'user_id',
         'book_id',
     ];
+
+    public function users(){
+
+        return $this->belongsTo(User::class);
+    }
+
+    public function books(){
+        return $this->belongsTo(Book::class);
+    }
 }

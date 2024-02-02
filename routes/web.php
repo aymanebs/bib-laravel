@@ -42,7 +42,7 @@ Route::get('books/{book}/delete',[BookController::class,'destroy'])->middleware(
 // reservation
 
 Route::get('/reservations',[ReservationController::class,'index'])->name('reservation.index')->middleware('admin');
-Route::get('/reservations/user',[ReservationController::class,'indexForUser'])->name('reservation.index')->middleware('user');
+Route::get('/reservations/user',[ReservationController::class,'indexForUser'])->name('reservation.user.index')->middleware('user');
 Route::get('reservations/{book}/create',[ReservationController::class,'create']);
 Route::post('reservations/create',[ReservationController::class,'store']);
 Route::get('reservations/{reservation}/delete',[ReservationController::class,'destroy']);
@@ -57,3 +57,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+

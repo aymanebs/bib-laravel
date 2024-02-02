@@ -9,11 +9,18 @@
                      @endif
                     <div class="card-header">
                     <h4>Reservations</h4>
+                    
                   
                     </div>
                     <div class="card-links">
                         <a href="{{url('/books')}}"style="text-decoration:none" >Books</a>
-                        <a href="{{url('/reservations')}}"style="text-decoration:none">Reservations</a>
+                        @if(auth()->user()->role_id == 1)
+                        <a href="{{url('/reservations')}}" style="text-decoration:none">Reservations</a>
+                        @endif
+                        @if(auth()->user()->role_id == 2)
+                        <a href="{{url('/reservations/user')}}" style="text-decoration:none">Reservations</a>
+                        @endif
+                       
                     </div>
                     <div class="card-body">
                         <table class="table">
@@ -23,11 +30,14 @@
                                    <th>description</th>
                                    <th>reservation_date</th> 
                                    <th>return_date</th>
-                                   <th>user_id</th>
-                                   <th>book_id</th>
                                    @if(auth()->user()->role_id == 1)
-                                   <th>Action</th>
+                                   <th>user_id</th>
+                                   <th>user</th>
+                                   <th>book_id</th>
                                    @endif
+                                   <th>book title</th>
+                                   <th>Action</th>
+                                  
                                 </tr>
                             </thead>
                            
@@ -38,8 +48,12 @@
                                     <td>{{$reservation->description}}</td>
                                     <td>{{$reservation->reservation_date}}</td>
                                     <td>{{$reservation->return_date}}</td>
+                                    @if(auth()->user()->role_id == 1)
                                     <td>{{$reservation->user_id}}</td>
+                                    <td>{{$reservation->user}}</td>
                                     <td>{{$reservation->book_id}}</td>
+                                    @endif
+                                    <td>{{$reservation->book}}</td>
                                     <td>
                                       
                                       <a href="{{url('reservations/' . $reservation->id . '/delete')}}" class="btn btn-danger">Delete</a> 

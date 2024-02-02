@@ -38,8 +38,10 @@
                                     <th>edition</th>
                                     <th>total_copies</th>
                                     <th>avaible_copies</th>
+                                    @if(auth()->user()->role_id == 1)
                                     <th>created_at</th>
                                     <th>updated_at</th>
+                                    @endif
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -54,8 +56,10 @@
                                     <td>{{$book->edition}}</td>
                                     <td>{{$book->total_copies}}</td>
                                     <td>{{$book->avaible_copies}}</td>
+                                    @if(auth()->user()->role_id == 1)
                                     <td>{{$book->created_at}}</td>
                                     <td>{{$book->updated_at}}</td>
+                                    @endif
                                     <td>
                                         @if(Auth()->user()->role_id == 1)
                                         <a href="{{url('books/' . $book->id . '/edit')}}" class="btn btn-warning">Edit</a>

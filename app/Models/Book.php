@@ -22,5 +22,9 @@ class Book extends Model
         'total_copies',
         'avaible_copies',
     ];
+
+    public function reservations(){
+        return $this->hasMany(Reservation::class);
+    }
 }
 
